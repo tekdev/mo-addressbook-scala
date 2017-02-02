@@ -1,0 +1,6 @@
+.idea/*
+.idea/libraries/*
+target/*
+project/target
+*.sc
+*/target
