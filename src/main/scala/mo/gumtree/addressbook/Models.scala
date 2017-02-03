@@ -17,6 +17,7 @@ case object Female extends Gender
 case class Contact(name: String, gender: Gender, dob: Date)
 
 object Contact {
+
   import CellMapping._
 
   def toContact(row: String)(implicit addressConfig: AddressConfig) = {
@@ -35,9 +36,9 @@ object Contact {
       case _ => throw InvalidValueException("gender not valid ")
     }
 
-    val dob = Try(cells(DOB)).getOrElse(throw InvalidValueException(s"${cells(DOB)} not  valid ")).trim
+    val dob = Try(addressConfig.dateFormat.parse(cells(DOB).trim)).getOrElse(throw InvalidValueException(s"${cells(DOB)} not  valid "))
 
-    Contact(name, gender, addressConfig.dataFormat.parse(dob))
+    Contact(name, gender, dob)
   }
 }
 

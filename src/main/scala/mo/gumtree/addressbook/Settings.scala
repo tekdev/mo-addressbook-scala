@@ -14,4 +14,4 @@ trait Settings {
     new SimpleDateFormat(config.getString("address.config.dateFormat")))
 }
 
-case class AddressConfig(filePath: String, dataFormat: SimpleDateFormat)
+case class AddressConfig(filePath: String, dateFormat: SimpleDateFormat)
