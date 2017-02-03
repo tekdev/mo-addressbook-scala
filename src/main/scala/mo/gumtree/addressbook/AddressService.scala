@@ -9,6 +9,8 @@ trait AddressService {
   val maleCount: Either[AddressError, Int]
 
   val oldest: Either[AddressError, String]
+
+  def compareOlderToYoung(olderPersonName: String, youngerPersonName: String): Either[AddressError, Long]
 }
 
 class AddressServiceImpl(fileReader: FileReader) extends AddressService {
@@ -26,6 +28,7 @@ class AddressServiceImpl(fileReader: FileReader) extends AddressService {
     .map(Right(_))
     .getOrElse(emptyAddressBookResp)
 
+  override def compareOlderToYoung(olderPersonName: String, youngerPersonName: String): Either[AddressError, Long] = ???
 }
 
 case class AddressError(message: String)
