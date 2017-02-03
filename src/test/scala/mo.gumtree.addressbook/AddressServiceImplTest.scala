@@ -54,6 +54,18 @@ class AddressServiceImplTest extends FunSpec with AddressServiceTestFixture with
       val addressService = new AddressServiceImpl(mockFileReader)
       addressService.compareOlderToYoung("Bill", "Paul") shouldBe Right(10)
     }
+
+    it("Should return an error if they have the same age") {
+      when(mockFileReader.contacts).thenReturn(contactsDobComparisonSameAge)
+      val addressService = new AddressServiceImpl(mockFileReader)
+      addressService.compareOlderToYoung("Bill", "Paul").isLeft shouldBe true
+    }
+
+    it("Should return an error if any of the contacts is undefined") {
+      when(mockFileReader.contacts).thenReturn(contactsDobComparisonMissing)
+      val addressService = new AddressServiceImpl(mockFileReader)
+      addressService.compareOlderToYoung("Bill", "Paul").isLeft shouldBe true
+    }
   }
 }
 
@@ -75,6 +87,15 @@ trait AddressServiceTestFixture {
 
   val contactsDobComparison = Set(
     Contact("Bill McKnight", Male, dateFormat.parse("10/03/77")),
+    Contact("Paul Robinson", Male, dateFormat.parse("20/03/77")),
+    Contact("Gemma Lane", Female, dateFormat.parse("20/11/91")))
+
+  val contactsDobComparisonMissing = Set(
+    Contact("Bill McKnight", Male, dateFormat.parse("10/03/77")),
+    Contact("Gemma Lane", Female, dateFormat.parse("20/11/91")))
+
+  val contactsDobComparisonSameAge = Set(
+    Contact("Bill McKnight", Male, dateFormat.parse("20/03/77")),
     Contact("Paul Robinson", Male, dateFormat.parse("20/03/77")),
     Contact("Gemma Lane", Female, dateFormat.parse("20/11/91")))
 }

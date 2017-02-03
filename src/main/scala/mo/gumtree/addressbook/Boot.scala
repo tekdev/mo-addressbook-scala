@@ -24,4 +24,8 @@ object Boot extends App with Settings with StrictLogging {
     case Left(error) => logger.error(error.message)
   }
 
+  addressService.compareOlderToYoung("Bill", "Paul") match {
+    case Right(days) => logger.info(s"Bill is older than paul ${days} days")
+    case Left(error) => logger.error(error.message)
+  }
 }
