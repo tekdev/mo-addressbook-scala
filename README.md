@@ -1,4 +1,18 @@
-# Gumtree coding challenge
+# AddressBook Application Implementation
+
+#### Dependencies 
+ In order to run you need
+ - Java 8 
+ - sbt 0.13.13
+ - Scala 2.12.1
+
+#### Running the application
+```sbt run```
+
+#### Running the tests
+```sbt test```
+
+# Gumtree requiments
 
 ## The task
 
@@ -24,3 +38,5 @@ Some insights into what we'll be looking for (and what we will not):
 - We will be looking at how you approach the task (e.g. how you break it into sub-tasks) and how you structure your code to answer the questions
 
 Good Luck!
+
+# 
