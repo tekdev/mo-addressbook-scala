@@ -19,4 +19,9 @@ object Boot extends App with Settings with StrictLogging {
     case Left(e) => logger.error(e.message)
   }
 
+  addressService.oldest match {
+    case Right(name) => logger.info(s"The oldest person is $name")
+    case Left(error) => logger.error(error.message)
+  }
+
 }
